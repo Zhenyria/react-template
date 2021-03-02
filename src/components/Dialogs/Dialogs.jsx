@@ -2,21 +2,19 @@ import c from './Dialogs.module.css';
 import UserDialog from "./UserDialog/UserDialog";
 import Message from "./Message/Message";
 import * as React from "react";
-import {editMsgActionCreate} from "../../redux/state";
+import {editNewMsgActionCreate, sendMsgActionCreate} from "../../redux/state";
 
 const Dialogs = (props) => {
 
     let dialogs = props.state.dialogsData.map(dialog => <UserDialog name={dialog.name} id={dialog.id}/>);
     let messages = props.state.messagesData.map(message => <Message msg={message.msg}/>);
 
-    let msg = React.createRef();
-
-    let editMsg = () => {
-        props.dispatch(editMsgActionCreate(msg.current.value))
+    let editNewMsg = (e) => {
+        props.dispatch(editNewMsgActionCreate(e.target.value))
     };
 
     let sendMsg = () => {
-        alert(msg.current.value)
+        props.dispatch(sendMsgActionCreate())
     };
 
     return (
@@ -25,10 +23,11 @@ const Dialogs = (props) => {
                 {dialogs}
             </div>
             <div>
-                {messages}
+                <div>{messages}</div>
                 <div>
                     <div>
-                        <textarea ref={msg} value={props.state.dialogText} onChange={editMsg}/>
+                        <textarea placeholder='Enter your message' value={props.state.newMsgText}
+                                  onChange={editNewMsg}/>
                     </div>
                     <div>
                         <button onClick={sendMsg}>Send message</button>

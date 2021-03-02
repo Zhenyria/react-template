@@ -1,6 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT';
+const SEND_MSG = 'SEND-MSG';
+const UPDATE_NEW_MSG_TEXT = 'UPDATE-NEW-MSG-TEXT';
 
 let store = {
     _state: {
@@ -14,7 +15,7 @@ let store = {
             ]
         },
         messagePage: {
-            dialogText: '',
+            newMsgText: '',
             messagesData: [
                 {id: 1, msg: 'Fuck u!!'},
                 {id: 2, msg: 'I like big dicks...'},
@@ -40,8 +41,8 @@ let store = {
     getState() {
         return this._state;
     },
-    _editDialog(text) {
-        this._state.messagePage.dialogText = text;
+    _editNewMsgText(text) {
+        this._state.messagePage.newMsgText = text;
         this._callSubscriber(this);
     },
     _addPost() {
@@ -58,31 +59,37 @@ let store = {
         this._state.profilePage.newText = text;
         this._callSubscriber(this);
     },
+    _sendMsg() {
+        this._state.messagePage.messagesData.push({id: 6, msg: this._state.messagePage.newMsgText});
+        this._state.messagePage.newMsgText = '';
+        this._callSubscriber(this);
+    },
     dispatch(action) {
         if (action.type === ADD_POST) {
             this._addPost();
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._editText(action.text)
-        } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
-            this._editDialog(action.text);
+        } else if (action.type === UPDATE_NEW_MSG_TEXT) {
+            this._editNewMsgText(action.text);
+        } else if (action.type === SEND_MSG) {
+            this._sendMsg();
         }
     }
 };
 
 export const addPostActionCreate = () => ({type: ADD_POST});
 
-export const postAreaChangeActionCreate = (text) =>
-    ({
-        type: UPDATE_NEW_POST_TEXT,
-        text: text
-    });
+export const postAreaChangeActionCreate = (text) => ({type: UPDATE_NEW_POST_TEXT, text: text});
 
-export const editMsgActionCreate = (text) => {
+export const editNewMsgActionCreate = (text) => {
     return {
-        type: UPDATE_NEW_DIALOG_TEXT,
+        type: UPDATE_NEW_MSG_TEXT,
         text: text
     }
 };
+
+export const sendMsgActionCreate = () => ({type: SEND_MSG});
+
 
 window.store = store;
 
