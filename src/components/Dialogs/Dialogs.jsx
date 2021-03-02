@@ -11,7 +11,12 @@ const Dialogs = (props) => {
     let msg = React.createRef();
 
     let editMsg = () => {
-        props.editDialog(msg.current.value);
+        props.dispatch(
+            {
+                type: 'UPDATE-NEW-DIALOG-TEXT',
+                text: msg.current.value
+            }
+        );
     };
 
     let sendMsg = () => {
