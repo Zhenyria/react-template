@@ -1,7 +1,7 @@
 import c from './MyPosts.module.css';
 import Post from './Post/Post';
 import * as React from 'react';
-import {addPostActionCreate, postAreaChangeActionCreate} from "../../../redux/state";
+import {addPostActionCreate, postAreaChangeActionCreate} from "../../../redux/profileReducer";
 
 const MyPosts = (props) => {
     let posts = props.state.postsData.map(p => <Post msg={p.msg} likeCount={p.likeCount}/>);
