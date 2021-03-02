@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT';
+
 let store = {
     _state: {
         profilePage: {
@@ -55,15 +59,30 @@ let store = {
         this._callSubscriber(this);
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             this._addPost();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._editText(action.text)
-        } else if (action.type === 'UPDATE-NEW-DIALOG-TEXT') {
+        } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
             this._editDialog(action.text);
         }
     }
-}
+};
+
+export const addPostActionCreate = () => ({type: ADD_POST});
+
+export const postAreaChangeActionCreate = (text) =>
+    ({
+        type: UPDATE_NEW_POST_TEXT,
+        text: text
+    });
+
+export const editMsgActionCreate = (text) => {
+    return {
+        type: UPDATE_NEW_DIALOG_TEXT,
+        text: text
+    }
+};
 
 window.store = store;
 

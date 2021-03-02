@@ -2,6 +2,7 @@ import c from './Dialogs.module.css';
 import UserDialog from "./UserDialog/UserDialog";
 import Message from "./Message/Message";
 import * as React from "react";
+import {editMsgActionCreate} from "../../redux/state";
 
 const Dialogs = (props) => {
 
@@ -11,12 +12,7 @@ const Dialogs = (props) => {
     let msg = React.createRef();
 
     let editMsg = () => {
-        props.dispatch(
-            {
-                type: 'UPDATE-NEW-DIALOG-TEXT',
-                text: msg.current.value
-            }
-        );
+        props.dispatch(editMsgActionCreate(msg.current.value))
     };
 
     let sendMsg = () => {
