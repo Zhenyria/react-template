@@ -2,7 +2,6 @@ const SEND_MSG = 'SEND-MSG';
 const UPDATE_NEW_MSG_TEXT = 'UPDATE-NEW-MSG-TEXT';
 
 let initState = {
-
     newMsgText: '',
     messagesData: [
         {id: 1, msg: 'Fuck u!!'},
@@ -22,13 +21,18 @@ let initState = {
 
 const messageReducer = (state = initState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MSG_TEXT:
-            state.newMsgText = action.text;
-            return state;
-        case SEND_MSG:
-            state.messagesData.push({id: 6, msg: state.newMsgText});
-            state.newMsgText = '';
-            return state;
+        case UPDATE_NEW_MSG_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newMsgText = action.text;
+            return stateCopy;
+        }
+        case SEND_MSG: {
+            let stateCopy = {...state};
+            stateCopy.messagesData = [...state.messagesData];
+            stateCopy.messagesData.push({id: 6, msg: state.newMsgText});
+            stateCopy.newMsgText = '';
+            return stateCopy;
+        }
         default:
             return state;
     }
