@@ -5,8 +5,8 @@ import * as React from "react";
 
 const Dialogs = (props) => {
 
-    let dialogs = props.dialogsData.map(dialog => <UserDialog name={dialog.name} id={dialog.id}/>);
-    let messages = props.messagesData.map(message => <Message msg={message.msg}/>);
+    let dialogs = props.dialogsData.map(dialog => <UserDialog name={dialog.name} key={dialog.id} id={dialog.id}/>);
+    let messages = props.messagesData.map(message => <Message msg={message.msg} key={message.id}/>);
 
     let editNewMsg = (e) => {
         props.editNewMsg(e.target.value);
