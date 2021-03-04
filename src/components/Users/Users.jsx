@@ -4,51 +4,19 @@ import defaultPhoto from './../../assets/default-avatar.png';
 
 const Users = (props) => {
 
-    if (props.users.length === 0) {
+    let getUsers = () => {
+        if (props.users.length === 0) {
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                props.setUsers(response.data.items);
-            });
-
-        // props.setUsers([
-        //     {
-        //         id: 1,
-        //         name: 'Pidorg Pidors',
-        //         status: 'I like suck dicks',
-        //         imgSrc: 'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        //         location: {country: 'RU', city: 'Moscow'},
-        //         followed: true
-        //     },
-        //     {
-        //         id: 2,
-        //         name: 'Alfa Samec',
-        //         status: 'I like suck dicks too',
-        //         imgSrc: 'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        //         location: {country: 'UK', city: 'Kiev'},
-        //         followed: false
-        //     },
-        //     {
-        //         id: 3,
-        //         name: 'Sosatel',
-        //         status: 'WTF??!!',
-        //         imgSrc: 'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        //         location: {country: 'EN', city: 'London'},
-        //         followed: false
-        //     },
-        //     {
-        //         id: 4,
-        //         name: 'Huebla',
-        //         status: 'This is my dick',
-        //         imgSrc: 'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png',
-        //         location: {country: 'RU', city: 'Saint-Petersburg'},
-        //         followed: false
-        //     }
-        // ]);
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(response => {
+                    props.setUsers(response.data.items);
+                });
+        }
     }
 
     return (
         <div>
+            <button onClick={getUsers}>Get users</button>
             {
                 props.users.map(user =>
                     <div key={user.id}>
