@@ -4,8 +4,7 @@ import defaultPhoto from './../../assets/default-avatar.png';
 import * as React from "react";
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+    componentDidMount() {
         if (this.props.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(response => {
@@ -15,6 +14,7 @@ class Users extends React.Component {
     }
 
     render() {
+        debugger;
         return (
             <div>
                 {
