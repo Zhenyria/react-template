@@ -3,3 +3,11 @@
     height: 30px;
     border-radius: 15px;
 }
+
+.selected {
+    font-weight: bold;
+}
+
+.paginationItem {
+    cursor: pointer;
+}
