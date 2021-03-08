@@ -15,16 +15,6 @@ export const usersAPI = {
                 return response.data;
             })
     },
-    getAuth() {
-        return instance.get('auth/me')
-            .then(response => {
-                let resultCode = response.data.resultCode;
-                return {
-                    resultCode,
-                    data: resultCode === 0 ? response.data.data : null
-                }
-            })
-    },
     follow(userId) {
         return instance.post('follow/' + userId)
             .then(response => {
@@ -35,6 +25,22 @@ export const usersAPI = {
         return instance.delete('follow/' + userId)
             .then(response => {
                 return response.data.resultCode === 0;
+            })
+    },
+    getProfile(userId) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
+    }
+}
+
+export const authAPI = {
+    getAuth() {
+        return instance.get('auth/me')
+            .then(response => {
+                let resultCode = response.data.resultCode;
+                return {
+                    resultCode,
+                    data: resultCode === 0 ? response.data.data : null
+                }
             })
     }
 }
