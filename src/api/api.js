@@ -26,9 +26,6 @@ export const usersAPI = {
             .then(response => {
                 return response.data.resultCode === 0;
             })
-    },
-    getProfile(userId) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
     }
 }
 
@@ -42,5 +39,17 @@ export const authAPI = {
                     data: resultCode === 0 ? response.data.data : null
                 }
             })
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/` + userId);
+    },
+    getStatus(userId) {
+        return instance.get(`profile/status/` + userId)
+    },
+    updateStatus(status) {
+        return instance.put('profile/status', {status})
     }
 }
