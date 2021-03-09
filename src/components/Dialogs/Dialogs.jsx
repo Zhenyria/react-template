@@ -1,8 +1,8 @@
 import c from './Dialogs.module.css';
-import UserDialog from "./UserDialog/UserDialog";
-import Message from "./Message/Message";
-import * as React from "react";
-import {Redirect} from "react-router";
+import UserDialog from './UserDialog/UserDialog';
+import Message from './Message/Message';
+import * as React from 'react';
+import {Redirect} from 'react-router';
 
 const Dialogs = (props) => {
 
