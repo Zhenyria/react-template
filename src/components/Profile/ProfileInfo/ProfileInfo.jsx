@@ -1,5 +1,6 @@
 import c from './ProfileInfo.module.css';
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from '../../common/Preloader/Preloader';
+import ProfileStatus from "../ProfileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -13,13 +14,11 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div>
-                <img src='https://cdn.shazoo.ru/284693_L7nXIl32kO_dkd7_mvvyaazvxr.jpg' alt='img'/>
-            </div>
             <div className={c.descriptionBlock}>
                 <div>
                     <img src={props.profile.photos.large}/>
                 </div>
+                <ProfileStatus status={'feeffe'}/>
                 <div>
                     <span className={c.fullName}>{props.profile.fullName}</span>
                 </div>
