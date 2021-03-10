@@ -5,6 +5,7 @@ import * as React from "react";
 import {Input} from "../common/FormsControls/FormsControls";
 import {requiredField} from "../../utils/validators/validator";
 import {Redirect} from "react-router";
+import c from '../common/FormsControls/FormsControls.module.css';
 
 const LoginForm = (props) => {
     return (
@@ -18,6 +19,7 @@ const LoginForm = (props) => {
             <div>
                 <Field type={'checkbox'} name={'rememberMe'} component={Input}/> remember me
             </div>
+            {props.error && <div className={c.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Sign in</button>
             </div>
