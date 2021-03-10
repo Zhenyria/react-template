@@ -39,6 +39,13 @@ export const authAPI = {
                     data: resultCode === 0 ? response.data.data : null
                 }
             })
+    },
+    login(email, password, rememberMe) {
+        return instance.post('auth/login', {
+            email: email,
+            password: password,
+            rememberMe: rememberMe
+        })
     }
 }
 
