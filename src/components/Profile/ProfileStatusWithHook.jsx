@@ -1,10 +1,14 @@
 import * as React from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import c from './Profile.module.css';
 
 const ProfileStatusWithHook = (props) => {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
+
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
 
     let activateEditMode = () => {
         setEditMode(true);
@@ -34,15 +38,5 @@ const ProfileStatusWithHook = (props) => {
         </div>
     )
 }
-//
-//
-// componentDidUpdate(prevProps, prevState)
-// {
-//     if (prevProps.status !== this.props.status) {
-//         this.setState({
-//             status: this.props.status
-//         })
-//     }
-// }
 
 export default ProfileStatusWithHook;
