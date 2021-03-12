@@ -3,6 +3,7 @@ import {profileAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST';
 
 let initState = {
     newText: 'Hi, my friend!',
@@ -37,10 +38,18 @@ const profileReducer = (state = initState, action) => {
                 status: action.status
             }
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                postsData: [...state.postsData].filter(p => p.id !== action.id)
+            }
+        }
         default:
             return state;
     }
 }
+
+export const deletePostActionCreate = (id) => ({type: DELETE_POST, id});
 
 export const addPostActionCreate = (newPostText) => ({type: ADD_POST, text: newPostText});
 
