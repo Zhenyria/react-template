@@ -16,29 +16,16 @@ export const usersAPI = {
             })
     },
     follow(userId) {
-        return instance.post('follow/' + userId)
-            .then(response => {
-                return response.data.resultCode === 0;
-            })
+        return instance.post('follow/' + userId);
     },
     unfollow(userId) {
-        return instance.delete('follow/' + userId)
-            .then(response => {
-                return response.data.resultCode === 0;
-            })
+        return instance.delete('follow/' + userId);
     }
 }
 
 export const authAPI = {
-    getAuth() {
-        return instance.get('auth/me')
-            .then(response => {
-                let resultCode = response.data.resultCode;
-                return {
-                    resultCode,
-                    data: resultCode === 0 ? response.data.data : null
-                }
-            })
+    me() {
+        return instance.get('auth/me');
     },
     login(email, password, rememberMe = false) {
         return instance.post('auth/login', {email, password, rememberMe});

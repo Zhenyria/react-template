@@ -2,28 +2,23 @@ import c from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHook from "../ProfileStatusWithHook";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
-        return (
-            <div>
-                <span>Profile's data is empty</span>
-                <Preloader/>
-            </div>
-        )
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
+        return <Preloader/>
     }
 
     return (
         <div>
             <div className={c.descriptionBlock}>
                 <div>
-                    <img src={props.profile.photos.large}/>
+                    <img src={profile.photos.large}/>
                 </div>
-                <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHook status={status} updateStatus={updateStatus}/>
                 <div>
-                    <span className={c.fullName}>{props.profile.fullName}</span>
+                    <span className={c.fullName}>{profile.fullName}</span>
                 </div>
                 <div>
-                    <span>{props.profile.aboutMe}</span>
+                    <span>{profile.aboutMe}</span>
                 </div>
             </div>
         </div>
