@@ -1,7 +1,7 @@
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -56,11 +56,11 @@ const AppWithRouter = compose(
 
 const MainApp = (props) => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppWithRouter/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
