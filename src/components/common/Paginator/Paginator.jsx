@@ -1,4 +1,5 @@
 import c from './Paginator.module.css';
+import cn from 'classnames';
 
 const Paginator = ({totalItemsCount, pageSize, currentPage, setCurrentPage, portionSize = 10}) => {
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
@@ -27,7 +28,7 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, setCurrentPage, port
                 .filter(pageNum => pageNum >= leftPortionPageNumber && pageNum <= rightPortionPageNumber)
                 .map(pageNum => {
                     return <span onClick={() => setCurrentPage(pageNum)}
-                                 className={(currentPage === pageNum && c.selected) + ' ' + c.paginationItem}>
+                                 className={cn({[c.selected]: currentPage === pageNum}, c.paginationItem)}>
                                 {pageNum}</span>
                 })}
 
